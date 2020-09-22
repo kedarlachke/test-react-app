@@ -64,7 +64,7 @@ describe("Headline Component",()=>{
         })
         it("Should not render without errors",()=>{
             const component=findByTestAtrr(wrapper,"HeadlineComponent")
-            console.log('component.length->'+component.length)
+            
             expect(component.length).toBe(0)
         })
     })

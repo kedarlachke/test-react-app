@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/headers'
 import './app.scss'
 import Headline from './components/headline'
+
 const tempArr = [{
   fName: 'Joe',
   lName: 'Bloggs',

@@ -1,7 +1,6 @@
   
 import React from 'react';
 import { shallow } from 'enzyme';
-//import { findByTestAtrr } from './../../../Utils';
 import Header from './index';
 import {findByTestAtrr} from '../../../utils'
 

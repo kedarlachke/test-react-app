@@ -30,7 +30,7 @@ const buttonConfig={
 }
 console.log(props)
   return (
-    <div >
+    <div data-test="appComponent">
      <Header/>
      <section className="main">
      <Headline header="Post" desc="click on post button to render post" temparr={tempArr}/> 

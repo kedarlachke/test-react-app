@@ -34,5 +34,18 @@ describe("App Component",()=>{
         expect(component.length).toBe(1)
     })
 
+    it("exampleMethod_updatesState function should update the function",()=>{
+        const classInstance = wrapper.instance();
+        classInstance.fetch();
+        const newState=classInstance.state.hideBtn
 
+        expect(newState).toBe(true)
+    })
+    it("exampleMethod_returnsAValue function should return a value",()=>{
+        const classInstance = wrapper.instance();
+        const returnval=classInstance.exampleMethod_returnsAValue(0);
+        
+
+        expect(returnval).toBe(1)
+    })
 })

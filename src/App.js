@@ -1,11 +1,15 @@
-import React from 'react';
-import Header from './components/headers'
-import './app.scss'
-import Headline from './components/headline'
-import SharedButon from './components/button'
-import Listitem from './components/listitems'
-import {connect} from 'react-redux'
-import {fetchPost} from './actions/index'
+import React, { Component } from 'react';
+import Header from './components/headers';
+import Headline from './components/headline';
+import SharedButton from './components/button';
+import ListItem from './components/listitems';
+import { connect } from 'react-redux';
+import { fetchPost } from './actions';
+import './app.scss';
+
+/* This const is not used within our app.
+   Although we are passing it to the Headline Component
+   it is only here as an exampleof testing PropTypes */
 const tempArr = [{
   fName: 'Joe',
   lName: 'Bloggs',
@@ -13,46 +17,81 @@ const tempArr = [{
   age: 24,
   onlineStatus: true
 }];
-function App(props) {
-  const {posts}=props
-  
-  //alert(post)
-const fetch=()=>{
- 
-  props.fetchPost()
 
-}
+const initialState = {
+  hideBtn: false
+};
 
-const buttonConfig={
-  buttonText:"GET POST",
-  emitEvent:fetch
+class App extends Component {
 
-}
-console.log(props)
-  return (
-    <div data-test="appComponent">
-     <Header/>
-     <section className="main">
-     <Headline header="Post" desc="click on post button to render post" temparr={tempArr}/> 
-     <SharedButon {...buttonConfig}/>
-  {posts && posts.length>0 && <div>{posts.map((p,i)=>{
-    const {title,body}=p
-    const configListitem={
-      title,
-      desc:body
+  constructor(props){
+    super(props);
+    this.state = {
+      ...initialState
     }
-      return <Listitem {...configListitem} key={i}/>  
-      })
-  }</div>}
-     </section>
-     
-    </div>
-  );
+    this.fetch = this.fetch.bind(this);
+  }
+
+  fetch(){
+    this.props.fetchPost();
+    this.exampleMethod_updatesState();
+  }
+
+  exampleMethod_updatesState() {
+    const { hideBtn } = this.state;
+    this.setState({
+      hideBtn: !hideBtn
+    });
+  }
+
+  exampleMethod_returnsAValue(number) {
+    return number + 1;
+  }
+
+  render() {
+    const { posts } = this.props;
+    const { hideBtn } = this.state;
+
+    const configButton = {
+      buttonText: 'Get posts',
+      emitEvent: this.fetch
+    }
+
+    return (
+      <div className="App" data-test="appComponent">
+        <Header />
+        <section className="main">
+          <Headline header="Posts" desc="Click the button to render posts!" tempArr={tempArr} />
+          
+          {!hideBtn &&
+            <SharedButton {...configButton} />
+          }
+          
+          {posts.length > 0 &&
+            <div>
+              {posts.map((post, index) => {
+                const { title, body } = post;
+                const configListItem = {
+                  title,
+                  desc: body
+                };
+                return (
+                  <ListItem key={index} {...configListItem} />
+                )
+              })}
+            </div>
+          }
+        </section>
+      </div>
+    );
+  }
 }
+
 const mapStateToProps = state => {
- 
+  console.log(state)
   return {
     posts: state.postreducer
   }
 }
-export default connect(mapStateToProps,{fetchPost})(App);
+
+export default connect(mapStateToProps, {fetchPost})(App);

@@ -46,6 +46,6 @@ describe("App Component",()=>{
         const returnval=classInstance.exampleMethod_returnsAValue(0);
         
 
-        expect(returnval).toBe(1)
+        expect(returnval).toBe(3)
     })
 })

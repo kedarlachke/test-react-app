@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "hisky":{
+  "husky":{
     "hooks":{
       "pre-push":"CI=true npm test"
     }

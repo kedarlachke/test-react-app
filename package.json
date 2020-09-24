@@ -23,7 +23,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
+  "hisky":{
+    "hooks":{
+      "pre-push":"CI=true npm test"
+    }
+  },
+    "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
@@ -42,6 +47,7 @@
     "check-prop-types": "^1.1.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
+    "husky": "^4.3.0",
     "jest": "^24.9.0",
     "jest-enzyme": "^7.1.2",
     "moxios": "^0.4.0"
